@@ -1,0 +1,104 @@
+body {
+    padding-top: 5rem;
+    background-color: #d5ecf2;
+}
+
+span{
+	text-align: center;
+}
+h2{
+	font-weight: bold;
+	text-align: left;
+
+}
+
+p{
+	text-align: left;
+}
+
+img {
+	border-radius: 50%;
+	box-shadow: 0px 0px 5px #fff;
+	margin-top: 20px;
+	width:210px;
+	height:210px;
+
+
+}
+
+.box{
+	background-color:#6B02AC;
+	font-family: "Open Sans"; 
+	color:white;
+	border-radius: 25px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	text-align: center;
+	width:40%;
+	position:relative;
+	left:30%;
+}
+
+.jumbotron{
+		border-radius: 25px;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		font-family: "Open Sans"; 
+		text-align: center;
+		
+}
+
+
+.form-group{
+	float:left;
+	font-weight: bold;
+	
+	
+}
+
+.form-control{
+	margin-bottom: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+h1{
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.info{
+
+	color:#E3F1E5;
+
+}
+
+.other_half{
+	background-color:white;
+	color:black;
+	padding:30px;
+
+}
+
+.about{
+	text-align: justify;
+}
+
+.num{
+	
+	font-weight: bold;
+}
+
+.follow_info{
+	
+font-family: "Helvetica ";
+color:#AEA9A9;
+
+}
+
+button{
+	background-color:#11C226;
+	border-radius: 8px;
+	margin-bottom: 5px;
+	margin-top: 30px;
+	color:white;
+	font-family: "Garamond";
+	width:40%;
+	height: 40px;
+}

@@ -1,0 +1,36 @@
+.box{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    
+}
+
+.info{
+    margin-left: 70px;
+    margin-top: 20px;
+    
+}
+
+
+
+.row{
+    padding-right: 500px;
+    
+}
+
+
+
+img{
+    
+    margin-top: 10px;
+    float: left;
+}
+
+body{
+background-color: #d5ecf2;
+}
+
+.button{
+ 
+ margin-top: 20px;
+ 
+}

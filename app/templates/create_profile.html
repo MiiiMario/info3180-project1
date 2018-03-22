@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/create_profile.css') }}">
+
+{% endblock %}
+
+{% block main %}
+
+<link href="https://fonts.googleapis.com/css?family=Oswald:700|Patua+One|Roboto+Condensed:700" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<section id="contact" class="content-section text-center">
+        <div class="contact-section">
+            <div class="container">
+              <h2>Create Profile</h2>
+              <p> Please fill out the form below</p>
+
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                <div class = "jumbotron">  
+                  <form method="POST" action="{{ url_for('profile') }}" enctype="multipart/form-data">
+                    
+                  	{{ form.firstname.label(class = "form-group") }}  {{ form.firstname(class = "form-control") }}
+                  	
+                  	{{ form.lastname.label(class = "form-group") }}  {{ form.lastname(class = "form-control") }}
+                  	
+                  	{{ form.gender.label(class = "form-group") }}  {{ form.gender(class = "form-control") }}
+
+                  	{{ form.email.label(class = "form-group") }}  {{ form.email(class = "form-control",placeholder = "myemail@example.com")  }}	
+
+                    {{ form.location.label(class = "form-group") }}  {{ form.location(class = "form-control") }}
+
+                  	{{ form.biography.label(class = "form-group") }} {{ form.biography(class = "form-control",placeholder = "Tell us something about yourself",size = 20)  }}	
+                    
+                    
+                   
+                    
+                    {{ form.image.label(class = "form-group") }}  {{ form.image(class = "form-control") }}
+                    
+                  	{{ form.csrf_token }}	
+                  	
+                  	
+                  
+                    <button type="submit" class="btn btn-default">Create Profile</button>
+                  </form>
+                </div>  
+                
+
+                
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+
+{% endblock %} 

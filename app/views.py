@@ -5,11 +5,14 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
-from app import app, db, login_manager
+from app import app, db, login_manager,allowed_files
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
-from forms import LoginForm
+from forms import ProForm
 from models import UserProfile
+import os, datetime,random
+from werkzeug.utils import secure_filename
+from sqlalchemy import exc
 
 
 ###
@@ -21,33 +24,52 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
-
-@app.route('/about/')
-def about():
-    """Render the website's about page."""
-    return render_template('about.html')
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    form = LoginForm()
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    form = ProForm()
+    
     if request.method == "POST":
-        # change this to actually validate the entire form submission
-        # and not just one field
-        if form.username.data:
-            # Get the username and password values from the form.
-
-            # using your model, query database for a user based on the username
-            # and password submitted
-            # store the result of that query to a `user` variable so it can be
-            # passed to the login_user() method.
-
-            # get user id, load into session
-            login_user(user)
-
-            # remember to flash a message to the user
-            return redirect(url_for("home"))  # they should be redirected to a secure-page route instead
-    return render_template("login.html", form=form)
+        if form.validate_on_submit():
+            firstname = form.firstname.data
+            lastname = form.lastname.data
+            gender = form.gender.data
+            email = form.email.data
+            location = form.location.data
+            biography = form.biography.data
+            created = str(datetime.datetime.now()).split()[0]
+                
+            image = form.image.data
+            image_name = secure_filename(image.filename)
+            image.save(os.path.join(app.config['UPLOAD_FOLDER'],image_name))
+                
+            uid = random.randint(1,9999)   
+            user = UserProfile(firstname, lastname, gender, email, location, biography, created, uid, image_name)
+                
+            db.session.add(user)
+            db.session.commit()
+                
+                
+                
+            flash("Profile Has Been Added Successfully", "success")
+            return redirect(url_for("profiles"))
+    return render_template("create_profile.html", form = ProForm)
+    
+@app.route('/profiles', defaults={'userid': None})
+@app.route('/profiles')
+def profiles(uid):
+    if not uid:
+        prolist = db.session.query(UserProfile).all()
+        if not prolist:
+            flash('No users found.', 'danger')
+            return redirect(url_for('add_profile'))
+        return render_template('profiles.html',prolist = prolist)
+    else:
+        user = UserProfile.query.filter_by(uid=uid).first()
+        if user is not None:
+            return render_template('profile.html', user = user)   
+        else:
+            flash('User was not found','danger')
+            return redirect(url_for('home'))
 
 
 # user_loader callback. This callback is used to reload the user object from
